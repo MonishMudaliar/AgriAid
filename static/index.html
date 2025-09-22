@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech Hub - Smart Farming Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">🌾 AgriTech Hub</a>
+            <div class="nav-links">
+                <a href="/croppred">🌱 Crop Recommendation</a>
+                <a href="/weather">🌤️ Weather</a>
+                <a href="/market">📊 Market Trends</a>
+                <a href="/ecom">🛒 Marketplace</a>
+            </div>
+            <div class="auth-links">
+                <a href="/login" class="btn-login">🔑 Login</a>
+                <a href="/signup" class="btn-signup">📝 Signup</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <main id="home-page" class="page active">
+        <section class="hero">
+            <div class="container">
+                <h1>Welcome to AgriTech Hub</h1>
+                <p>Your comprehensive agricultural companion for smart farming decisions</p>
+                
+                <div class="options-grid">
+                                    <div class="option-card" onclick="window.location.href='/croppred'">
+                    <div class="option-icon">🌱</div>
+                    <h3>Crop & Fertilizer Recommendation</h3>
+                    <p>Get personalized crop recommendations and fertilizer suggestions based on your soil conditions, climate, and requirements.</p>
+                    <div style="margin-top: 20px; font-size: 0.9rem; color: #6b9c7a;">
+                        💡 Click to get started
+                    </div>
+                </div>
+                
+                <div class="option-card" onclick="window.location.href='/weather'">
+                    <div class="option-icon">🌤️</div>
+                    <h3>Weather Prediction</h3>
+                    <p>Access accurate weather forecasts and predictions to plan your farming activities effectively.</p>
+                    <div style="margin-top: 20px; font-size: 0.9rem; color: #6b9c7a;">
+                        🌦️ Real-time forecasts
+                    </div>
+                </div>
+                
+                <div class="option-card" onclick="window.location.href='/market'">
+                    <div class="option-icon">📊</div>
+                    <h3>Market Trends</h3>
+                    <p>Stay updated with current market prices, trends, and demand for various agricultural products.</p>
+                    <div style="margin-top: 20px; font-size: 0.9rem; color: #6b9c7a;">
+                        📈 Price insights
+                    </div>
+                </div>
+                
+                <div class="option-card" onclick="window.location.href='/ecom'">
+                    <div class="option-icon">🛒</div>
+                    <h3>E-commerce Marketplace</h3>
+                    <p>Buy and sell agricultural products directly with other farmers. List your produce and find buyers.</p>
+                    <div style="margin-top: 20px; font-size: 0.9rem; color: #6b9c7a;">
+                        🚀 Start trading
+                    </div>
+                </div>
+                </div>
+                
+                <!-- Agricultural Stats -->
+                <div style="margin-top: 80px; text-align: center;">
+                    <h2 style="color: #4a7c59; margin-bottom: 30px; font-size: 2rem;">🌾 Why Choose AgriTech Hub?</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 800px; margin: 0 auto;">
+                        <div style="background: rgba(74, 124, 89, 0.1); padding: 20px; border-radius: 15px; border: 2px solid rgba(74, 124, 89, 0.3);">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">🎯</div>
+                            <h4 style="color: #4a7c59; margin-bottom: 10px;">Smart Recommendations</h4>
+                            <p style="color: #c8e6c9; font-size: 0.9rem;">AI-powered crop suggestions</p>
+                        </div>
+                        <div style="background: rgba(74, 124, 89, 0.1); padding: 20px; border-radius: 15px; border: 2px solid rgba(74, 124, 89, 0.3);">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">📱</div>
+                            <h4 style="color: #4a7c59; margin-bottom: 10px;">Mobile Friendly</h4>
+                            <p style="color: #c8e6c9; font-size: 0.9rem;">Works on all devices</p>
+                        </div>
+                        <div style="background: rgba(74, 124, 89, 0.1); padding: 20px; border-radius: 15px; border: 2px solid rgba(74, 124, 89, 0.3);">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">🔒</div>
+                            <h4 style="color: #4a7c59; margin-bottom: 10px;">Secure & Reliable</h4>
+                            <p style="color: #c8e6c9; font-size: 0.9rem;">Your data is safe</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <div id="chatbot-window" class="chatbot-window" style="display: none;">
+            <div class="chatbot-header">
+                <h3>🌾 AgriTech Assistant</h3>
+                <p style="font-size: 0.9rem; opacity: 0.9;">Ask me anything about farming!</p>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot-message">
+                    Hello! I'm your agricultural assistant. I can help with crop recommendations, weather predictions, market trends, and selling products. How can I assist you today?
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input" placeholder="Type your message..." onkeypress="handleChatbotKeyPress(event)">
+            </div>
+        </div>
+        
+        <button class="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

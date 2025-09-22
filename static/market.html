@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Trends - AgriTech Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo">🌾 AgriTech Hub</a>
+            <div class="nav-links">
+                <a href="/croppred">🌱 Crop Recommendation</a>
+                <a href="/weather">🌤️ Weather</a>
+                <a href="/market" class="active">📊 Market Trends</a>
+                <a href="/ecom">🛒 Marketplace</a>
+            </div>
+            <div class="auth-links">
+                <a href="/login" class="btn-login">🔑 Login</a>
+                <a href="/signup" class="btn-signup">📝 Signup</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Market Trends Page -->
+    <main id="market-page" class="page active">
+        <div class="page-header">
+            <div class="container">
+                <h1>📊 Market Trends</h1>
+                <p>Stay updated with current market prices and trends for agricultural products</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <a href="/" class="back-btn">← Back to Home</a>
+            
+            <div id="market-results" class="results">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>📈 Current Market Trends</h2>
+                    <p id="last-updated" style="color: #7f8c8d; font-size: 0.9rem;"></p>
+                </div>
+                <table id="market-table" class="market-table">
+                    <thead>
+                        <tr>
+                            <th>🌾 Crop</th>
+                            <th>💰 Price (₹/quintal)</th>
+                            <th>📊 Trend</th>
+                            <th>🔥 Demand</th>
+                        </tr>
+                    </thead>
+                    <tbody id="market-tbody"></tbody>
+                </table>
+            </div>
+
+            <div id="market-insights" class="results">
+                <h2>💡 Market Insights</h2>
+                <div id="insights-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;"></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="fetchMarketData()" class="btn" style="max-width: 200px;">🔄 Refresh Market Data</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Load market data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchMarketData();
+        });
+    </script>
+</body>
+</html>

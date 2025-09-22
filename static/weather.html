@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Prediction - AgriTech Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation         
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo">🌾 AgriTech Hub</a>
+            <div class="nav-links">
+                <a href="/croppred">🌱 Crop Recommendation</a>
+                <a href="/weather" class="active">🌤️ Weather</a>
+                <a href="/market">📊 Market Trends</a>
+                <a href="/ecom">🛒 Marketplace</a>
+            </div>
+            <div class="auth-links">
+                <a href="/login" class="btn-login">🔑 Login</a>
+                <a href="/signup" class="btn-signup">📝 Signup</a>
+            </div>
+        </nav>
+    </header>-->
+
+    <!-- Weather Prediction Page -->
+    <main id="weather-page" class="page active">
+        <div class="page-header">
+            <div class="container">
+                <h1>🌤️ Weather Prediction</h1>
+                <p>Get accurate weather forecasts to plan your farming activities</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <a href="/" class="back-btn">← Back to Home</a>
+            
+            <div id="weather-results" class="results">
+                <h2>🌡️ Current Weather</h2>
+                <div id="current-weather" class="weather-grid"></div>
+            </div>
+
+            <div id="weather-forecast" class="results">
+                <h2>📅 7-Day Weather Forecast</h2>
+                <div id="forecast-grid" class="weather-grid"></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="fetchWeatherData()" class="btn" style="max-width: 200px;">🔄 Refresh Weather Data</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Load weather data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchWeatherData();
+        });
+    </script>
+</body>
+</html>

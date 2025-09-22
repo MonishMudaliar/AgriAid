@@ -1,0 +1,1365 @@
+/* Enhanced Animations and Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(74, 124, 89, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(74, 124, 89, 0.8), 0 0 30px rgba(74, 124, 89, 0.6);
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d4a3e 50%, #1a1a1a 100%);
+    color: #e8f5e8;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px; /* Increased from 1200px to extend content */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #4a7c59;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #F8FAE5;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #6b9c7a;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #c8e6c9;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+}
+
+.nav-links a:hover {
+    color: #4a7c59;
+    background: rgba(74, 124, 89, 0.1);
+    border-color: #4a7c59;
+}
+
+/* Navbar Container - Narrower width */
+.nav .container {
+    max-width: 900px; /* Narrower navbar container */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Back Button Styles */
+.back-btn {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #6b9c7a 0%, #4a7c59 100%);
+}
+
+/* Navigation Active State */
+.nav-links a.active,
+.auth-links a.active {
+    color: #4a7c59;
+    background: rgba(74, 124, 89, 0.1);
+    border-color: #4a7c59;
+}
+
+/* Enhanced Form Styling for Auth Pages */
+.form-container .form-group {
+    margin-bottom: 25px;
+}
+
+.form-container .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4a7c59;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.form-container .form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid rgba(74, 124, 89, 0.3);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2d4a3e;
+}
+
+.form-container .form-group input:focus {
+    outline: none;
+    border-color: #4a7c59;
+    box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+    background: white;
+    color: #2d4a3e;
+}
+
+.form-container .form-group input::placeholder {
+    color: #6b9c7a;
+}
+
+.form-container .form-group small {
+    display: block;
+    margin-top: 6px;
+    font-style: italic;
+}
+
+/* Checkbox Styling */
+.form-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+/* Enhanced Button Styling for Auth Pages */
+.form-container .btn {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3);
+}
+
+.form-container .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
+}
+
+/* Split Layout Design for Login Page */
+.split-layout {
+    display: flex;
+    min-height: 100vh; /* Full viewport height since no navbar */
+    background: #2d4a3e; /* Dark green background matching our palette */
+}
+
+.info-panel {
+    flex: 1;
+    background: linear-gradient(135deg, #2d4a3e 0%, #1a2f26 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+}
+
+.info-content {
+    text-align: center;
+    color: white;
+    max-width: 500px;
+}
+
+.app-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #F8FAE5; /* Light cream color from our palette */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.app-tagline {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #B19470; /* Warm brown from our palette */
+}
+
+.app-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #c8e6c9; /* Light green for readability */
+    opacity: 0.9;
+}
+
+/* Skip Link Styling */
+.skip-link-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.skip-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.skip-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+.form-panel {
+    flex: 1;
+    background: #F8FAE5; /* Light cream background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.form-content {
+    width: 100%;
+    max-width: 450px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h2 {
+    font-size: 2.2rem;
+    color: #2d4a3e;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.form-header p {
+    color: #6b9c7a;
+    font-size: 1.1rem;
+}
+
+/* Enhanced Form Styling for Split Layout */
+.auth-form .form-group {
+    margin-bottom: 25px;
+}
+
+.auth-form .form-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #2d4a3e;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.auth-form .form-group .icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.auth-form .form-group input {
+    width: 100%;
+    padding: 15px 18px;
+    border: 2px solid rgba(45, 74, 62, 0.2);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: #2d4a3e;
+}
+
+.auth-form .form-group input:focus {
+    outline: none;
+    border-color: #4a7c59;
+    box-shadow: 0 0 0 4px rgba(74, 124, 89, 0.1);
+    background: white;
+}
+
+.auth-form .form-group input::placeholder {
+    color: #9ca3af;
+}
+
+.auth-form .form-group small {
+    display: block;
+    margin-top: 8px;
+    color: #6b9c7a;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* Form Options Styling */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #2d4a3e;
+    font-size: 0.95rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.forgot-link {
+    color: #4a7c59;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #2d4a3e;
+    text-decoration: underline;
+}
+
+.terms-link {
+    color: #4a7c59;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.terms-link:hover {
+    color: #2d4a3e;
+    text-decoration: underline;
+}
+
+/* Button Styling for Split Layout */
+.btn-primary {
+    width: 100%;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3);
+    margin-bottom: 25px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(74, 124, 89, 0.4);
+}
+
+.btn-primary .icon {
+    margin-right: 10px;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 14px 28px;
+    background: rgba(74, 124, 89, 0.1);
+    color: #4a7c59;
+    border: 2px solid #4a7c59;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.btn-secondary:hover {
+    background: #4a7c59;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-secondary .icon {
+    margin-right: 8px;
+}
+
+/* Form Footer Styling */
+.form-footer {
+    text-align: center;
+    margin: 30px 0;
+    padding-top: 25px;
+    border-top: 1px solid rgba(45, 74, 62, 0.2);
+}
+
+.form-footer p {
+    color: #6b9c7a;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+/* Welcome Message Button */
+.welcome-message-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-welcome {
+    background: linear-gradient(135deg, #76453B 0%, #B19470 100%); /* Dark brown to warm brown */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(118, 69, 59, 0.3);
+}
+
+.btn-welcome:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(118, 69, 59, 0.4);
+}
+
+.btn-welcome .icon {
+    margin-right: 8px;
+}
+
+/* Signup Page Specific Styling - Dark Green Theme */
+.signup-layout {
+    background: #1a2f26; /* Darker green background */
+}
+
+.signup-info-panel {
+    background: linear-gradient(135deg, #1a2f26 0%, #0f1a15 100%);
+}
+
+.signup-form-panel {
+    background: #2d4a3e; /* Slightly lighter dark green for form panel */
+}
+
+.signup-form .form-header h2,
+.signup-form .form-header p {
+    color: white;
+}
+
+.signup-form .form-group label {
+    color: white;
+}
+
+.signup-form .form-group input {
+    background: #3a5a4e; /* Dark grey input fields */
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.signup-form .form-group input:focus {
+    border-color: #4a7c59;
+    background: #4a6b5e;
+}
+
+.signup-form .form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.signup-form .form-group small {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.signup-options .checkbox-label {
+    color: white;
+}
+
+.btn-signup-primary {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    color: white;
+    border: none;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3);
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.btn-signup-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(74, 124, 89, 0.4);
+}
+
+.btn-signup-secondary {
+    background: transparent;
+    color: #4a7c59;
+    border: 2px solid #4a7c59;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    padding: 14px 28px;
+    display: inline-block;
+}
+
+.btn-signup-secondary:hover {
+    background: #4a7c59;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.signup-form .form-footer p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Additional styling for login page consistency */
+.signup-form .forgot-link {
+    color: #4a7c59;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.signup-form .forgot-link:hover {
+    color: #6b9c7a;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .split-layout {
+        flex-direction: column;
+    }
+    
+    .info-panel {
+        padding: 30px 20px;
+        min-height: 300px;
+    }
+    
+    .form-panel {
+        padding: 30px 20px;
+    }
+    
+    .app-title {
+        font-size: 2.5rem;
+    }
+    
+    .app-tagline {
+        font-size: 1.2rem;
+    }
+}
+
+/* Responsive adjustments for navbar and content */
+@media (max-width: 1200px) {
+    .nav .container {
+        max-width: 95%; /* Use more screen width on smaller screens */
+    }
+    
+    #home-page .container {
+        max-width: 95%; /* Use more screen width on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav .container {
+        max-width: 98%; /* Almost full width on mobile */
+        padding: 0 10px;
+    }
+    
+    #home-page .container {
+        max-width: 98%; /* Almost full width on mobile */
+        padding: 20px 10px;
+    }
+}
+
+/* Auth Page Specific Styling (keeping for signup page) */
+#signup-page .page-header {
+    background: linear-gradient(135deg, rgba(74, 124, 89, 0.1) 0%, rgba(107, 156, 122, 0.1) 100%);
+    padding: 60px 0;
+    text-align: center;
+}
+
+#signup-page .page-header h1 {
+    color: #4a7c59;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+#signup-page .page-header p {
+    color: #6b9c7a;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Page Management - Now using separate files */
+.page {
+    display: block;
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    color: #e8f5e8;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(45, 74, 62, 0.7) 100%);
+    z-index: 1;
+}
+
+.hero > * {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    color: #4a7c59;
+    font-weight: 800;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 60px;
+    opacity: 0.95;
+    color: #c8e6c9;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.option-card {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 74, 62, 0.9) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 50px 30px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 2px solid rgba(74, 124, 89, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.option-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 124, 89, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.option-card:hover::before {
+    left: 100%;
+}
+
+.option-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    border-color: #4a7c59;
+}
+
+.option-icon {
+    font-size: 4.5rem;
+    margin-bottom: 25px;
+    color: #6b9c7a;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.option-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #4a7c59;
+    font-weight: 700;
+}
+
+/* Home Page Specific Container - Wider content */
+#home-page .container {
+    max-width: 1600px; /* Even wider for home page content */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.option-card p {
+    color: #c8e6c9;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.page-header {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%);
+    backdrop-filter: blur(15px);
+    padding: 50px 0;
+    margin-bottom: 40px;
+    text-align: center;
+    border-bottom: 3px solid #4a7c59;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    color: #4a7c59;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.page-header p {
+    color: #c8e6c9;
+    font-size: 1.2rem;
+}
+
+.form-container {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
+    border: 2px solid rgba(74, 124, 89, 0.3);
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #4a7c59;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #2d4a3e;
+    border-radius: 15px;
+    font-size: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(26, 26, 26, 0.8);
+    color: #e8f5e8;
+    position: relative;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #6b9c7a;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(74, 124, 89, 0.2);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4a7c59;
+    box-shadow: 0 0 25px rgba(74, 124, 89, 0.5);
+    background: rgba(26, 26, 26, 0.9);
+    transform: translateY(-2px);
+    animation: glow 2s infinite;
+}
+
+.form-group input::placeholder {
+    color: #6b9c7a;
+}
+
+.btn {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    color: white;
+    border: none;
+    padding: 18px 35px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #6b9c7a 0%, #4a7c59 100%);
+}
+
+.results {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px;
+    margin-top: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(74, 124, 89, 0.3);
+}
+
+.weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.weather-card {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 74, 62, 0.9) 100%);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(74, 124, 89, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.weather-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 124, 89, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.weather-card:hover::before {
+    left: 100%;
+}
+
+.weather-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #4a7c59;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(74, 124, 89, 0.2);
+}
+
+.weather-card h4 {
+    color: #4a7c59;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.weather-card p {
+    color: #c8e6c9;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.market-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 35px;
+    background: rgba(26, 26, 26, 0.9);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(74, 124, 89, 0.3);
+}
+
+.market-table th,
+.market-table td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid #2d4a3e;
+}
+
+.market-table th {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.market-table tr:hover {
+    background: rgba(74, 124, 89, 0.15);
+    transform: scale(1.01);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    margin-top: 35px;
+}
+
+.product-card {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 74, 62, 0.9) 100%);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(74, 124, 89, 0.3);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: #4a7c59;
+}
+
+.product-card h3 {
+    color: #4a7c59;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    color: #6b9c7a;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-details {
+    color: #c8e6c9;
+    margin-bottom: 20px;
+}
+
+.add-product-form {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(74, 124, 89, 0.3);
+}
+
+.add-product-form h3 {
+    margin-bottom: 25px;
+    color: #4a7c59;
+    font-size: 1.5rem;
+}
+
+/* Chatbot Styles */
+.chatbot {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.chatbot-toggle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid rgba(26, 26, 26, 0.8);
+    animation: float 3s ease-in-out infinite;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(74, 124, 89, 0.3);
+    animation: pulse 1s infinite;
+}
+
+.chatbot-window {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+    width: 380px;
+    height: 550px;
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.98) 0%, rgba(45, 74, 62, 0.98) 100%);
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #4a7c59;
+}
+
+.chatbot-header {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 22px 22px 0 0;
+    text-align: center;
+}
+
+.chatbot-messages {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    max-height: 380px;
+}
+
+.message {
+    margin-bottom: 18px;
+    padding: 12px 18px;
+    border-radius: 18px;
+    max-width: 85%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    color: white;
+    margin-left: auto;
+}
+
+.bot-message {
+    background: rgba(26, 26, 26, 0.8);
+    color: #c8e6c9;
+    border: 1px solid rgba(74, 124, 89, 0.3);
+}
+
+.chatbot-input {
+    padding: 25px;
+    border-top: 2px solid #2d4a3e;
+}
+
+.chatbot-input input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #2d4a3e;
+    border-radius: 25px;
+    font-size: 14px;
+    background: rgba(26, 26, 26, 0.8);
+    color: #e8f5e8;
+}
+
+.chatbot-input input:focus {
+    outline: none;
+    border-color: #4a7c59;
+    box-shadow: 0 0 20px rgba(74, 124, 89, 0.3);
+}
+
+.chatbot-input input::placeholder {
+    color: #6b9c7a;
+}
+
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(26, 26, 26, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9c7a 100%);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #6b9c7a 0%, #4a7c59 100%);
+    transform: scale(1.1);
+}
+
+/* Additional interactive enhancements */
+.option-card:nth-child(1) { animation-delay: 0s; }
+.option-card:nth-child(2) { animation-delay: 0.1s; }
+.option-card:nth-child(3) { animation-delay: 0.2s; }
+.option-card:nth-child(4) { animation-delay: 0.3s; }
+
+/* Hover effects for table rows */
+.market-table tr {
+    transition: all 0.3s ease;
+}
+
+.market-table tr:hover {
+    background: rgba(74, 124, 89, 0.15);
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced form container */
+.form-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(74, 124, 89, 0.05), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .options-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .chatbot-window {
+        width: 320px;
+        right: -30px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .form-container {
+        padding: 30px;
+    }
+    
+    .page-header h1 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Align login/signup to the far right */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Auth Buttons */
+.auth-links {
+    display: flex;
+    gap: 12px;
+}
+
+.auth-links a {
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* Unique Login Button */
+.btn-login {
+    background: linear-gradient(135deg, #4a7c59, #6b9c7a);
+    color: #fff;
+    box-shadow: 0px 3px 6px rgba(74, 124, 89, 0.3);
+}
+.btn-login:hover {
+    background: linear-gradient(135deg, #3b6248, #5a8c6a);
+    transform: scale(1.05);
+}
+
+/* Unique Signup Button */
+.btn-signup {
+    background: #fff;
+    color: #4a7c59;
+    border: 2px solid #4a7c59;
+}
+.btn-signup:hover {
+    background: #4a7c59;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.home-btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 8px 16px;
+  background-color: #4CAF50; /* green */
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.home-btn:hover {
+  background-color: #45a049; /* darker green on hover */
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation - AgriTech Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+ <!--   <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo">🌾 AgriTech Hub</a>
+            <div class="nav-links">
+                <a href="/croppred" class="active">🌱 Crop Recommendation</a>
+                <a href="/weather">🌤️ Weather</a>
+                <a href="/market">📊 Market Trends</a>
+                <a href="/ecom">🛒 Marketplace</a>
+            </div>
+            <div class="auth-links">
+                <a href="/login" class="btn-login">🔑 Login</a>
+                <a href="/signup" class="btn-signup">📝 Signup</a>
+            </div>
+        </nav>
+    </header>-->
+
+    <!-- Crop Recommendation Page -->
+    <main id="crop-page" class="page active">
+        <div class="page-header">
+            <div class="container">
+                <h1>🌱 Crop & Fertilizer Recommendation</h1>
+                <p>Get AI-powered crop recommendations using real agricultural data and advanced Machine Learning models</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <a href="/" class="back-btn">← Back to Home</a>
+            
+            <form id="crop-form" class="form-container">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <div class="form-group">
+                        <label for="N">🧪 Nitrogen (N) - mg/kg</label>
+                        <input type="number" id="N" name="N" min="0" max="140" placeholder="Enter N value (0-140)" required>
+                        <small style="color: #6b9c7a; font-size: 0.8rem;">Essential for leaf growth and chlorophyll production</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="P">🧪 Phosphorus (P) - mg/kg</label>
+                        <input type="number" id="P" name="P" min="5" max="145" placeholder="Enter P value (5-145)" required>
+                        <small style="color: #6b9c7a; font-size: 0.8rem;">Important for root development and flowering</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="K">🧪 Potassium (K) - mg/kg</label>
+                        <input type="number" id="K" name="K" min="5" max="205" placeholder="Enter K value (5-205)" required>
+                        <small style="color: #6b9c7a; font-size: 0.8rem;">Helps with disease resistance and fruit quality</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ph">🧪 Soil pH Level</label>
+                        <input type="number" id="ph" name="ph" step="0.1" min="3.5" max="10.0" placeholder="Enter soil pH (3.5-10.0)" required>
+                        <small style="color: #6b9c7a; font-size: 0.8rem;">Affects nutrient availability to plants</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rainfall">🌧️ Rainfall (mm)</label>
+                        <input type="number" id="rainfall" name="rainfall" step="0.1" min="20" max="300" placeholder="Enter rainfall (20-300 mm)" required>
+                        <small style="color: #6b9c7a; font-size: 0.8rem;">Annual or seasonal rainfall amount</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="model_choice">🤖 ML Model Selection</label>
+                        <select id="model_choice" name="model_choice" required>
+                            <option value="xgb" selected>🚀 XGBoost (95.2% accuracy)</option>
+                            <option value="lgbm">⚡ LightGBM (94.8% accuracy)</option>
+                        </select>
+                        <small style="color: #6b9c7a; font-size: 0.8rem;">Choose your preferred machine learning model</small>
+                    </div>
+                </div>
+                <button type="submit" class="btn">🌱 Get AI-Powered Recommendations</button>
+            </form>
+
+            <div id="crop-results" class="results" style="display: none;">
+                <h2>🤖 AI Crop Recommendations</h2>
+                
+                <!-- Model Information -->
+                <div id="model-info" style="background: rgba(74, 124, 89, 0.1); padding: 20px; border-radius: 15px; border: 2px solid rgba(74, 124, 89, 0.3); margin-bottom: 25px;">
+                    <h4 style="color: #4a7c59; margin-bottom: 15px;">📊 Model Details</h4>
+                    <div id="model-details" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;"></div>
+                </div>
+                
+                <!-- Input Parameters -->
+                <div id="crop-details" style="margin-bottom: 25px;"></div>
+                
+                <!-- Top Recommendation -->
+                <div id="top-recommendation" style="background: linear-gradient(135deg, rgba(74, 124, 89, 0.2) 0%, rgba(107, 156, 122, 0.2) 100%); padding: 25px; border-radius: 20px; border: 2px solid #4a7c59; margin-bottom: 25px; text-align: center;">
+                    <h3 style="color: #4a7c59; margin-bottom: 15px;">🥇 Top Recommendation</h3>
+                    <div id="top-crop" style="font-size: 2rem; margin-bottom: 10px;"></div>
+                    <div id="confidence" style="color: #6b9c7a; font-size: 1.1rem; font-weight: bold;"></div>
+                </div>
+                
+                <!-- All Recommendations -->
+                <h3>🌾 All Crop Recommendations:</h3>
+                <div id="recommended-crops" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;"></div>
+                
+                <!-- Probability Chart -->
+                <div id="probability-chart" style="margin-top: 30px;">
+                    <h3>📊 Prediction Probabilities</h3>
+                    <div id="prob-bars" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
