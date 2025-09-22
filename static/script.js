@@ -8,81 +8,20 @@ let currentPage = 'home';
 
 function displayCropResults(result) {
     const resultsDiv = document.getElementById('crop-results');
-    const modelDetailsDiv = document.getElementById('model-details');
-    const cropDetailsDiv = document.getElementById('crop-details');
-    const topCropDiv = document.getElementById('top-crop');
-    const confidenceDiv = document.getElementById('confidence');
-    const recommendedCropsDiv = document.getElementById('recommended-crops');
-    const probBarsDiv = document.getElementById('prob-bars');
-    
-    // Show results
     resultsDiv.style.display = 'block';
-    
-    // Model information
-    modelDetailsDiv.innerHTML = `
-        <div style="background: rgba(74, 124, 89, 0.1); padding: 15px; border-radius: 10px; border: 1px solid rgba(74, 124, 89, 0.3);">
-            <strong>Model Used:</strong> ${result.model_used}<br>
-            <strong>Accuracy:</strong> ${result.model_accuracy}<br>
-            <strong>Confidence:</strong> ${(result.prediction_confidence * 100).toFixed(1)}%
+
+    const confidencePercentage = (result.prediction_confidence * 100).toFixed(1);
+
+    resultsDiv.innerHTML = `
+        <div style="background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%); border: 2px solid rgba(74, 124, 89, 0.4); border-radius: 16px; padding: 28px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #9FE29F; font-weight: 700; font-size: 1.5rem;">
+                <span style=\"font-size: 1.8rem;\">🌿</span> Recommended Crop
+            </div>
+            <div style="font-size: 2rem; color: #b6f5b6; font-weight: 800; margin-bottom: 8px;">${result.predicted_crop}</div>
+            <div style="color: #6b9c7a; margin-bottom: 12px;">Confidence: ${confidencePercentage}%</div>
+            <div style="color: #c8e6c9;">Based on your soil and environmental conditions, this crop is most suitable for cultivation.</div>
         </div>
     `;
-    
-    // Input parameters
-    cropDetailsDiv.innerHTML = `
-        <h4 style="color: #4a7c59; margin-bottom: 15px;">📊 Input Parameters</h4>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
-            <div style="background: rgba(74, 124, 89, 0.1); padding: 15px; border-radius: 10px; border: 1px solid rgba(74, 124, 89, 0.3);">
-                <strong>N:</strong> ${result.input_parameters.N} mg/kg
-            </div>
-            <div style="background: rgba(74, 124, 89, 0.1); padding: 15px; border-radius: 10px; border: 1px solid rgba(74, 124, 89, 0.3);">
-                <strong>P:</strong> ${result.input_parameters.P} mg/kg
-            </div>
-            <div style="background: rgba(74, 124, 89, 0.1); padding: 15px; border-radius: 10px; border: 1px solid rgba(74, 124, 89, 0.3);">
-                <strong>K:</strong> ${result.input_parameters.K} mg/kg
-            </div>
-            <div style="background: rgba(74, 124, 89, 0.1); padding: 15px; border-radius: 10px; border: 1px solid rgba(74, 124, 89, 0.3);">
-                <strong>pH:</strong> ${result.input_parameters.ph}
-            </div>
-            <div style="background: rgba(74, 124, 89, 0.1); padding: 15px; border-radius: 10px; border: 1px solid rgba(74, 124, 89, 0.3);">
-                <strong>Rainfall:</strong> ${result.input_parameters.rainfall} mm
-            </div>
-        </div>
-    `;
-    
-    // Top recommendation
-    topCropDiv.textContent = result.predicted_crop;
-    confidenceDiv.textContent = `Confidence: ${(result.prediction_confidence * 100).toFixed(1)}%`;
-    
-    // All recommendations
-    let cropsHTML = '';
-    result.recommended_crops.forEach(crop => {
-        const prob = result.crop_probabilities[crop] || 0;
-        cropsHTML += `
-            <div style="background: rgba(74, 124, 89, 0.1); padding: 20px; border-radius: 15px; border: 2px solid rgba(74, 124, 89, 0.3); text-align: center;">
-                <h4 style="color: #4a7c59; margin-bottom: 10px;">${crop}</h4>
-                <p style="color: #6b9c7a; font-size: 1.2rem; font-weight: bold;">${(prob * 100).toFixed(1)}%</p>
-            </div>
-        `;
-    });
-    recommendedCropsDiv.innerHTML = cropsHTML;
-    
-    // Probability bars
-    let probHTML = '';
-    Object.entries(result.crop_probabilities).forEach(([crop, prob]) => {
-        const percentage = (prob * 100).toFixed(1);
-        probHTML += `
-            <div style="margin-bottom: 15px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <span style="color: #4a7c59;">${crop}</span>
-                    <span style="color: #6b9c7a;">${percentage}%</span>
-                </div>
-                <div style="background: rgba(74, 124, 89, 0.2); height: 20px; border-radius: 10px; overflow: hidden;">
-                    <div style="background: linear-gradient(90deg, #4a7c59, #6b9c7a); height: 100%; width: ${percentage}%; transition: width 1s ease;"></div>
-                </div>
-            </div>
-        `;
-    });
-    probBarsDiv.innerHTML = probHTML;
 }
 
 // Weather functions
@@ -392,6 +331,58 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error:', error);
                 alert('Error adding product. Please try again.');
             }
+        });
+    }
+    
+    // Fertilizer recommendation handler
+    const fertBtn = document.getElementById('fertilizer-btn');
+    if (fertBtn) {
+        fertBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const soilColor = (document.getElementById('soilColor').value || '').toLowerCase();
+            const nitrogen = parseFloat(document.getElementById('fN').value) || 0;
+            const phosphorus = parseFloat(document.getElementById('fP').value) || 0;
+            const potassium = parseFloat(document.getElementById('fK').value) || 0;
+            const pH = parseFloat(document.getElementById('fpH').value) || 0;
+            const rainfall = parseFloat(document.getElementById('fRain').value) || 0;
+            const temperature = parseFloat(document.getElementById('fTemp').value) || 0;
+            const crop = (document.getElementById('fCrop').value || '').toLowerCase();
+
+            let fertilizer = 'Balanced NPK (20-20-20)';
+            if (nitrogen < 50) {
+                fertilizer = 'Urea (46-0-0)';
+            } else if (phosphorus < 30) {
+                fertilizer = 'DAP (18-46-0)';
+            } else if (potassium < 30) {
+                fertilizer = 'MOP (0-0-60)';
+            } else if (pH < 6.0) {
+                fertilizer = 'Lime + NPK (19-19-19)';
+            } else if (pH > 8.0) {
+                fertilizer = 'Sulfur + NPK (20-20-20)';
+            } else if (soilColor.includes('black')) {
+                fertilizer = 'NPK (10-26-26)';
+            } else if (soilColor.includes('red')) {
+                fertilizer = 'NPK (12-32-16)';
+            } else if (temperature > 30 && rainfall < 100) {
+                fertilizer = 'NPK (15-15-15) + Micronutrients';
+            }
+
+            const fertResults = document.getElementById('fertilizer-results');
+            // Ensure the form stays visible
+            const fertForm = document.getElementById('fertilizer-form');
+            if (fertForm) fertForm.style.display = '';
+
+            fertResults.style.display = 'block';
+            fertResults.innerHTML = `
+                <div style="background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%); border: 2px solid rgba(74, 124, 89, 0.4); border-radius: 16px; padding: 28px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #98B6FF; font-weight: 700; font-size: 1.5rem;">
+                        <span style=\"font-size: 1.8rem;\">🧪</span> Recommended Fertilizer
+                    </div>
+                    <div style="font-size: 2rem; color: #B4C9FF; font-weight: 800; margin-bottom: 8px;">${fertilizer}</div>
+                    <div style="color: #c8e6c9;">Based on your soil analysis and crop requirements, this fertilizer will optimize your yield.</div>
+                </div>
+            `;
+            // Avoid auto-scrolling which can look like inputs disappeared
         });
     }
 });
