@@ -337,52 +337,94 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fertilizer recommendation handler
     const fertBtn = document.getElementById('fertilizer-btn');
     if (fertBtn) {
-        fertBtn.addEventListener('click', function(e) {
+        fertBtn.addEventListener('click', async function(e) {
             e.preventDefault();
-            const soilColor = (document.getElementById('soilColor').value || '').toLowerCase();
-            const nitrogen = parseFloat(document.getElementById('fN').value) || 0;
-            const phosphorus = parseFloat(document.getElementById('fP').value) || 0;
-            const potassium = parseFloat(document.getElementById('fK').value) || 0;
-            const pH = parseFloat(document.getElementById('fpH').value) || 0;
-            const rainfall = parseFloat(document.getElementById('fRain').value) || 0;
-            const temperature = parseFloat(document.getElementById('fTemp').value) || 0;
-            const crop = (document.getElementById('fCrop').value || '').toLowerCase();
-
-            let fertilizer = 'Balanced NPK (20-20-20)';
-            if (nitrogen < 50) {
-                fertilizer = 'Urea (46-0-0)';
-            } else if (phosphorus < 30) {
-                fertilizer = 'DAP (18-46-0)';
-            } else if (potassium < 30) {
-                fertilizer = 'MOP (0-0-60)';
-            } else if (pH < 6.0) {
-                fertilizer = 'Lime + NPK (19-19-19)';
-            } else if (pH > 8.0) {
-                fertilizer = 'Sulfur + NPK (20-20-20)';
-            } else if (soilColor.includes('black')) {
-                fertilizer = 'NPK (10-26-26)';
-            } else if (soilColor.includes('red')) {
-                fertilizer = 'NPK (12-32-16)';
-            } else if (temperature > 30 && rainfall < 100) {
-                fertilizer = 'NPK (15-15-15) + Micronutrients';
-            }
-
+            
+            // Show loading state
             const fertResults = document.getElementById('fertilizer-results');
-            // Ensure the form stays visible
-            const fertForm = document.getElementById('fertilizer-form');
-            if (fertForm) fertForm.style.display = '';
-
             fertResults.style.display = 'block';
             fertResults.innerHTML = `
-                <div style="background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%); border: 2px solid rgba(74, 124, 89, 0.4); border-radius: 16px; padding: 28px;">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #98B6FF; font-weight: 700; font-size: 1.5rem;">
-                        <span style=\"font-size: 1.8rem;\">🧪</span> Recommended Fertilizer
+                <div style="background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%); border: 2px solid rgba(74, 124, 89, 0.4); border-radius: 16px; padding: 28px; text-align: center;">
+                    <div style="margin-bottom: 15px; color: #98B6FF; font-weight: 700; font-size: 1.2rem;">
+                        <span style=\"font-size: 1.5rem;\">⏳</span> Processing your request...
                     </div>
-                    <div style="font-size: 2rem; color: #B4C9FF; font-weight: 800; margin-bottom: 8px;">${fertilizer}</div>
-                    <div style="color: #c8e6c9;">Based on your soil analysis and crop requirements, this fertilizer will optimize your yield.</div>
+                    <div style="color: #c8e6c9;">Analyzing soil parameters and crop requirements...</div>
                 </div>
             `;
-            // Avoid auto-scrolling which can look like inputs disappeared
+            
+            // Get form values
+            const soilColor = document.getElementById('soilColor').value.toLowerCase(); // Convert to lowercase
+            const nitrogen = parseFloat(document.getElementById('fN').value);
+            const phosphorus = parseFloat(document.getElementById('fP').value);
+            const potassium = parseFloat(document.getElementById('fK').value);
+            const pH = parseFloat(document.getElementById('fpH').value);
+            const rainfall = parseFloat(document.getElementById('fRain').value);
+            const temperature = parseFloat(document.getElementById('fTemp').value);
+            const crop = document.getElementById('fCrop').value.toLowerCase(); // Convert to lowercase
+            
+            // Prepare data for API
+            const data = {
+                "Soil_color": soilColor,
+                "Nitrogen": nitrogen,
+                "Phosphorus": phosphorus,
+                "Potassium": potassium,
+                "pH": pH,
+                "Rainfall": rainfall,
+                "Temperature": temperature,
+                "Crop": crop
+            };
+            
+            try {
+                // Call the fertilizer prediction API
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Error predicting fertilizer');
+                }
+                
+                const result = await response.json();
+                displayFertilizerResults(result);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                fertResults.innerHTML = `
+                    <div style="background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%); border: 2px solid rgba(231, 76, 60, 0.4); border-radius: 16px; padding: 28px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #e74c3c; font-weight: 700; font-size: 1.5rem;">
+                            <span style=\"font-size: 1.8rem;\">⚠️</span> Error
+                        </div>
+                        <div style="color: #e8f5e8; margin-bottom: 8px;">${error.message}</div>
+                        <div style="color: #c8e6c9; font-size: 0.9rem;">
+                            Please check your inputs and try again. Make sure all values are within acceptable ranges.
+                            <br>If the problem persists, the model might not recognize some input values.
+                        </div>
+                    </div>
+                `;
+            }
         });
+    }
+    
+    // Function to display fertilizer prediction results
+    function displayFertilizerResults(result) {
+        const fertResults = document.getElementById('fertilizer-results');
+        
+        fertResults.innerHTML = `
+            <div style="background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 74, 62, 0.95) 100%); border: 2px solid rgba(74, 124, 89, 0.4); border-radius: 16px; padding: 28px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #98B6FF; font-weight: 700; font-size: 1.5rem;">
+                    <span style=\"font-size: 1.8rem;\">🧪</span> Recommended Fertilizer
+                </div>
+                <div style="font-size: 2rem; color: #B4C9FF; font-weight: 800; margin-bottom: 8px;">${result.predicted_fertilizer}</div>
+                <div style="color: #c8e6c9; margin-bottom: 15px;">${result.explanation}</div>
+                <div style="color: #6b9c7a; font-size: 0.9rem; border-top: 1px solid rgba(74, 124, 89, 0.3); padding-top: 15px; margin-top: 10px;">
+                    Based on ML model analysis of your soil parameters and crop requirements.
+                </div>
+            </div>
+        `;
     }
 });
